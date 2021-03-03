@@ -13,7 +13,7 @@ objectives:
 - They are single sentences describing what a learner should be able to do once they
   have completed the tutorial
 - You can use Bloom's Taxonomy to write effective learning objectives
-time_estimation: 1H
+time_estimation: ''
 key_points:
 - The take-home messages
 - They will appear at the end of the tutorial
@@ -52,15 +52,6 @@ tutorial.
 **Please follow our
 [tutorial to learn how to fill the Markdown]({{ site.baseurl }}/topics/contributing/tutorials/create-new-tutorial-content/tutorial.html)**
 
-
-***TODO***: Explain the biology
-
-***TODO***: Explain object tracking
-
-***TODO***: Explain the dataset (Drosophila embryos) from [CellProfiler examples](https://cellprofiler.org/examples). We can insert here a few of the images so that the 'movement' is shown.
-
-
-
 > ### Agenda
 >
 > In this tutorial, we will cover:
@@ -70,13 +61,11 @@ tutorial.
 >
 {: .agenda}
 
-# CellProfiler in Galaxy
+# Title for your first section
 
 Give some background about what the trainees will be doing in the section.
 Remember that many people reading your materials will likely be novices,
 so make sure to explain all the relevant concepts.
-
-***TODO***: Maybe here we can say that CP in Galaxy has some minor changes compared to the UI. Or maybe not, not sure about this section.
 
 ## Title for a subsection
 Section and subsection titles will be displayed in the tutorial index on the left side of
@@ -88,6 +77,11 @@ Often you may wish to combine several boxes into one or make other adjustments s
 as breaking the tutorial into sections, we encourage you to make such changes as you
 see fit, this is just a starting point :)
 
+Anywhere you find the word "***TODO***", there is something that needs to be changed
+depending on the specifics of your tutorial.
+
+have fun!
+
 ## Get data
 
 > ### {% icon hands_on %} Hands-on: Data upload
@@ -98,20 +92,27 @@ see fit, this is just a starting point :)
 >     -> `{{ page.title }}`):
 >
 >    ```
->    https://zenodo.org/api/files/e5d1bd5c-60a0-42e4-8f0d-a2ebc863c5d9/drosophila_sample.zip
+>    
 >    ```
+>    ***TODO***: *Add the files by the ones on Zenodo here (if not added)*
+>
+>    ***TODO***: *Remove the useless files (if added)*
 >
 >    {% include snippets/import_via_link.md %}
 >    {% include snippets/import_from_data_library.md %}
 >
+> 3. Rename the datasets
+> 4. Check that the datatype
+>
+>    {% include snippets/change_datatype.md datatype="datatypes" %}
+>
+> 5. Add to each database a tag corresponding to ...
+>
+>    {% include snippets/add_tag.md %}
+>
 {: .hands_on}
 
-
-***TODO***: We have a zip in zenodo, need to use the tool unzip to get all the images into a collection. 
-
-
-
-# Option 1: Create your CellProfiler pipeline in Galaxy
+# Title of the section usually corresponding to a big step in the analysis
 
 It comes first a description of the step: some background and some theory.
 Some image can be added there to support the theory explanation:
@@ -135,7 +136,7 @@ A big step can have several subsections or sub steps:
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [ColorToGray](toolshed.g2.bx.psu.edu/repos/bgruening/cp_color_to_gray/cp_color_to_gray/3.1.9) %} with the following parameters:
+> 1. {% tool [ColorToGray](toolshed.g2.bx.psu.edu/repos/bgruening/cp_color_to_gray/cp_color_to_gray/3.1.9+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **Starting Modules** {% icon tool %})
 >    - *"Enter the name of the input image"*: `OrigColor`
 >    - *"Conversion method"*: `Combine`
@@ -168,11 +169,46 @@ A big step can have several subsections or sub steps:
 >
 {: .question}
 
+## Sub-step with **Unzip**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. {% tool [Unzip](toolshed.g2.bx.psu.edu/repos/imgteam/unzip/unzip/0.2) %} with the following parameters:
+>    - {% icon param-file %} *"input_file"*: `output` (Input dataset)
+>    - *"Extract single file"*: `All files`
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
 ## Sub-step with **IdentifyPrimaryObjects**
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [IdentifyPrimaryObjects](toolshed.g2.bx.psu.edu/repos/bgruening/cp_identify_primary_objects/cp_identify_primary_objects/3.1.9) %} with the following parameters:
+> 1. {% tool [IdentifyPrimaryObjects](toolshed.g2.bx.psu.edu/repos/bgruening/cp_identify_primary_objects/cp_identify_primary_objects/3.1.9+galaxy1) %} with the following parameters:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **ColorToGray** {% icon tool %})
 >    - *"Use advanced settings?"*: `Yes, use advanced settings`
 >        - *"Enter the name of the input image (from NamesAndTypes)"*: `OrigGray`
@@ -221,7 +257,7 @@ A big step can have several subsections or sub steps:
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [MeasureObjectSizeShape](toolshed.g2.bx.psu.edu/repos/bgruening/cp_measure_object_size_shape/cp_measure_object_size_shape/3.1.9) %} with the following parameters:
+> 1. {% tool [MeasureObjectSizeShape](toolshed.g2.bx.psu.edu/repos/bgruening/cp_measure_object_size_shape/cp_measure_object_size_shape/3.1.9+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **IdentifyPrimaryObjects** {% icon tool %})
 >    - In *"new object"*:
 >        - {% icon param-repeat %} *"Insert new object"*
@@ -259,7 +295,7 @@ A big step can have several subsections or sub steps:
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [MeasureObjectIntensity](toolshed.g2.bx.psu.edu/repos/bgruening/cp_measure_object_intensity/cp_measure_object_intensity/3.1.9) %} with the following parameters:
+> 1. {% tool [MeasureObjectIntensity](toolshed.g2.bx.psu.edu/repos/bgruening/cp_measure_object_intensity/cp_measure_object_intensity/3.1.9+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **MeasureObjectSizeShape** {% icon tool %})
 >    - In *"new image"*:
 >        - {% icon param-repeat %} *"Insert new image"*
@@ -299,7 +335,7 @@ A big step can have several subsections or sub steps:
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [TrackObjects](toolshed.g2.bx.psu.edu/repos/bgruening/cp_track_objects/cp_track_objects/3.1.9) %} with the following parameters:
+> 1. {% tool [TrackObjects](toolshed.g2.bx.psu.edu/repos/bgruening/cp_track_objects/cp_track_objects/3.1.9+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **MeasureObjectIntensity** {% icon tool %})
 >    - *"Enter the name of the objects to track"*: `Embryos`
 >    - *"Choose a tracking method"*: `Overlap`
@@ -338,7 +374,7 @@ A big step can have several subsections or sub steps:
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [OverlayOutlines](toolshed.g2.bx.psu.edu/repos/bgruening/cp_overlay_outlines/cp_overlay_outlines/3.1.9) %} with the following parameters:
+> 1. {% tool [OverlayOutlines](toolshed.g2.bx.psu.edu/repos/bgruening/cp_overlay_outlines/cp_overlay_outlines/3.1.9+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **TrackObjects** {% icon tool %})
 >    - *"Display outlines on a blank image?"*: `No`
 >        - *"Enter the name of image on which to display outlines"*: `OrigGray`
@@ -380,7 +416,7 @@ A big step can have several subsections or sub steps:
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [Tile](toolshed.g2.bx.psu.edu/repos/bgruening/cp_tile/cp_tile/3.1.9) %} with the following parameters:
+> 1. {% tool [Tile](toolshed.g2.bx.psu.edu/repos/bgruening/cp_tile/cp_tile/3.1.9+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **OverlayOutlines** {% icon tool %})
 >    - *"Enter the name of an input image"*: `OrigColor`
 >    - *"Name the output image"*: `AdjacentImage`
@@ -426,7 +462,7 @@ A big step can have several subsections or sub steps:
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [SaveImages](toolshed.g2.bx.psu.edu/repos/bgruening/cp_save_images/cp_save_images/3.1.9) %} with the following parameters:
+> 1. {% tool [SaveImages](toolshed.g2.bx.psu.edu/repos/bgruening/cp_save_images/cp_save_images/3.1.9+galaxy1) %} with the following parameters:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **Tile** {% icon tool %})
 >    - *"Select the type of image to save"*: `Image`
 >        - *"Saved the format to save the image(s)"*: `png`
@@ -466,14 +502,13 @@ A big step can have several subsections or sub steps:
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [ExportToSpreadsheet](toolshed.g2.bx.psu.edu/repos/bgruening/cp_export_to_spreadsheet/cp_export_to_spreadsheet/3.1.9) %} with the following parameters:
+> 1. {% tool [ExportToSpreadsheet](toolshed.g2.bx.psu.edu/repos/bgruening/cp_export_to_spreadsheet/cp_export_to_spreadsheet/3.1.9+galaxy1) %} with the following parameters:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **SaveImages** {% icon tool %})
 >    - *"Select the column delimiter"*: ``
 >    - *"Add a prefix to file names?"*: `Do not add prefix to the file name`
 >    - *"Calculate the per-image median values for object measurements?"*: `No`
 >    - *"Calculate the per-image standard deviation values for object measurements?"*: `No`
 >    - *"Create a GenePattern GCT file?"*: `No`
->    - *"Export all measurement types?"*: `Yes`
 >
 >    ***TODO***: *Check parameter descriptions*
 >
@@ -506,10 +541,10 @@ A big step can have several subsections or sub steps:
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. {% tool [CellProfiler](toolshed.g2.bx.psu.edu/repos/bgruening/cp_cellprofiler/cp_cellprofiler/3.1.9) %} with the following parameters:
+> 1. {% tool [CellProfiler](toolshed.g2.bx.psu.edu/repos/bgruening/cp_cellprofiler/cp_cellprofiler/3.1.9+galaxy0) %} with the following parameters:
 >    - {% icon param-file %} *"Pipeline file"*: `output_pipeline` (output of **ExportToSpreadsheet** {% icon tool %})
 >    - *"Are the input images packed into a tar archive?"*: `No`
->        - {% icon param-collection %} *"Images"*: `output` (Input dataset collection)
+>        - {% icon param-file %} *"Images"*: `unzipped` (output of **Unzip** {% icon tool %})
 >    - *"Detailed logging file?"*: `Yes`
 >
 >    ***TODO***: *Check parameter descriptions*
@@ -522,6 +557,8 @@ A big step can have several subsections or sub steps:
 >    {: .comment}
 >
 {: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
 
 > ### {% icon question %} Questions
 >
@@ -538,42 +575,12 @@ A big step can have several subsections or sub steps:
 {: .question}
 
 
-# Option 2: Upload your CellProfiler pipeline and run it in Galaxy
-
-## Sub-step 1
-
-***TODO***: How to upload a pipeline file (take the snippet upload data sas example) and call it `uploaded_pipeline`.
-
-## Sub-step with **CellProfiler**
-
-> ### {% icon hands_on %} Hands-on: Task description
->
-> 1. {% tool [CellProfiler](toolshed.g2.bx.psu.edu/repos/bgruening/cp_cellprofiler/cp_cellprofiler/3.1.9) %} with the following parameters:
->    - {% icon param-file %} *"Pipeline file"*: `uploaded_pipeline` (output of **ExportToSpreadsheet** {% icon tool %})
->    - *"Are the input images packed into a tar archive?"*: `No`
->        - {% icon param-collection %} *"Images"*: `output` (Input dataset collection)
->    - *"Detailed logging file?"*: `Yes`
->
->    ***TODO***: *Check parameter descriptions*
->
->    ***TODO***: *Consider adding a comment or tip box*
->
->    > ### {% icon comment %} Comment
->    >
->    > A comment about the tool or something else. This box can also be in the main text
->    {: .comment}
->
-{: .hands_on}
-
-
-# Re-arrange
+## Re-arrange
 
 To create the template, each step of the workflow had its own subsection.
 
 ***TODO***: *Re-arrange the generated subsections into sections or other subsections.
 Consider merging some hands-on boxes to have a meaningful flow of the analyses*
-
-
 
 # Conclusion
 {:.no_toc}
