@@ -120,7 +120,7 @@ A big step can have several subsections or sub steps:
 >    - {% icon param-file %} *"Select the input CellProfiler pipeline"*: `output_pipeline` (output of **Starting Modules** {% icon tool %})
 >    - *"Enter the name of the input image"*: `OrigColor`
 >    - *"Conversion method"*: `Combine`
->        - *"Image type"*: `RGB`
+>        - *"Image type"*:  {% color_picker #ff000 %} (red)
 >
 >    ***TODO***: *Check parameter descriptions*
 >
